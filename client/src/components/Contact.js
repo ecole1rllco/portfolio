@@ -26,21 +26,33 @@ export const Contact = () => {
         e.preventDefault();
         setButtonText("Sending...");
 
-        let response = await fetch("http://localhost:5000/contact", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json;charset=utf-8",
-            },
-            body: JSON.stringify(formDetails),
-        });
+        try {
+            let response = await fetch("https://gd3g088tw9.execute-api.us-east-2.amazonaws.com/prod/contact", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json;charset=utf-8",
+                },
+                body: JSON.stringify(formDetails),
+            });
 
-        setButtonText("Send");
-        let result = await response.json();
-        setFormDetails(formInitialDetails);
+            setButtonText("Send");
 
-        if (result.code === 200) {
-            setStatus({ success: true, message: 'Message sent successfully' });
-        } else {
+            // Log the full response to see what's coming back
+            const result = await response.json();
+            console.log("API Response:", result);
+
+            setFormDetails(formInitialDetails);
+
+            if (response.ok && result.code === 200) {
+                setStatus({ success: true, message: 'Message sent successfully' });
+            } else {
+                // Log the error for more detail
+                console.error("API call was not successful. Response code:", response.status, "Message:", result.status || 'Unknown error');
+                setStatus({ success: false, message: 'Something went wrong, please try again later.' });
+            }
+        } catch (error) {
+            console.error("Fetch error:", error);
+            setButtonText("Send");
             setStatus({ success: false, message: 'Something went wrong, please try again later.' });
         }
     }

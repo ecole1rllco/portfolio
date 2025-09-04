@@ -3,6 +3,7 @@ const router = express.Router();
 const cors = require("cors");
 const nodemailer = require("nodemailer");
 const { google } = require("googleapis");
+const serverless = require("serverless-http");
 require("dotenv").config();
 
 const app = express();
@@ -72,3 +73,5 @@ router.post("/contact", async (req, res) => {
         res.json({ code: 500, status: "Error", error });
     }
 });
+
+exports.handler = serverless(app);
