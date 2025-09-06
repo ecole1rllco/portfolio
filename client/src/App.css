@@ -380,7 +380,7 @@ nav.navbar .navbar-toggler[aria-expanded="true"] .navbar-toggler-icon {
     }
 
 .background-image-left {
-    top: -200px;
+    top: -400px;
     position: absolute;
     bottom: 0;
     width: 60%;
@@ -489,6 +489,10 @@ nav.navbar .navbar-toggler[aria-expanded="true"] .navbar-toggler-icon {
         height: 0;
         transition: 0.4s ease-in-out;
         border-radius: 30px;
+    }
+
+    .proj-imgbx a {
+        text-decoration: none;
     }
 
     .proj-imgbx:hover::before {
@@ -649,6 +653,7 @@ nav.navbar .navbar-toggler[aria-expanded="true"] .navbar-toggler-icon {
     background-position: center center;
     background-size: cover;
     background-repeat: no-repeat;
+
 }
 
 .footer img {
