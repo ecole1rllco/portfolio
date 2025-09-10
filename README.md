@@ -27,8 +27,6 @@ This is my personal portfolio, where I showcase the projects I’ve built, the s
 
 ## 🚀 Getting Started
 
-Ready to run this on your own machine? It's easy! Just follow these steps.
-
 ### Prerequisites
 
 * Node.js installed
@@ -78,7 +76,7 @@ Ready to run this on your own machine? It's easy! Just follow these steps.
         node server.js
         ```
 
-    * To get the frontend up and running, open a new terminal tab, go back to the project's root folder, and run:
+    * To get the frontend up and running, open a new terminal tab, run this command from the `client` directory:
         ```bash
         npm start
         ```
