@@ -28,6 +28,7 @@ export const Contact = () => {
 
         try {
             let response = await fetch("https://gd3g088tw9.execute-api.us-east-2.amazonaws.com/prod/contact", {
+                //let response = await fetch("http://localhost:5000/contact", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json;charset=utf-8",
@@ -84,11 +85,13 @@ export const Contact = () => {
                                     <textarea rows="6" value={formDetails.message} placeholder="Message" onChange={(e) => onFormUpdate('message', e.target.value)}></textarea>
                                     <button type="submit"><span>{buttonText}</span></button>
                                 </Col>
-                                {
+                                {  
                                     status.message &&
-                                    <Col>
-                                        <p className={status.success === false ? "danger" : "success"}>{status.message}</p>
-                                    </Col>
+                                    <Col className="contact-result-col">  
+                                        <div className="contact-result">
+                                            <p className={status.success === false ? "danger" : "success"}>{status.message}</p>    
+                                        </div>
+                                    </Col>          
                                 }
                             </Row>
                         </form>

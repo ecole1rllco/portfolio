@@ -77,11 +77,11 @@ input:focus, textarea:focus, select:focus {
 }
 
 p.success {
-    color: green;
+    color: #850303;
 }
 
 p.danger {
-    color: red;
+    color: darkred;
 }
 
 /************ Navbar Css ************/
@@ -380,7 +380,7 @@ nav.navbar .navbar-toggler[aria-expanded="true"] .navbar-toggler-icon {
     }
 
 .background-image-left {
-    top: -200px;
+    top: -400px;
     position: absolute;
     bottom: 0;
     width: 60%;
@@ -489,6 +489,10 @@ nav.navbar .navbar-toggler[aria-expanded="true"] .navbar-toggler-icon {
         height: 0;
         transition: 0.4s ease-in-out;
         border-radius: 30px;
+    }
+
+    .proj-imgbx a {
+        text-decoration: none;
     }
 
     .proj-imgbx:hover::before {
@@ -642,6 +646,19 @@ nav.navbar .navbar-toggler[aria-expanded="true"] .navbar-toggler-icon {
             width: 100%;
         }
 
+.contact-result {
+    padding: 20px;
+    padding-top: 35px;
+    border-radius: 10px;
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    background: rgba(255, 255, 255, 0.2);
+}
+
+.contact-result-col {
+    margin-top: 30px !important;
+    margin-bottom: -30px !important;
+    padding-left: 0 !important;
+}
 /************ Footer Css ************/
 .footer {
     padding: 20px 0 40px 0;
