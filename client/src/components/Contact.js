@@ -89,7 +89,7 @@ export const Contact = () => {
                                     status.message &&
                                     <Col className="contact-result-col">  
                                         <div className="contact-result">
-                                            <p className={status.success === false ? "danger" : "success"}>{status.message}&nbsp;</p>    
+                                            <p className={status.success === false ? "danger" : "success"}>{status.message}</p>    
                                         </div>
                                     </Col>          
                                 }
