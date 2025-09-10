@@ -1,6 +1,6 @@
 # 🌸 Personal Portfolio
 
-Welcome to my portfolio! This little corner of the internet is a showcase of my skills, projects, and a great way to get in touch. It's a responsive website built with some fantastic modern tech, featuring a friendly, interactive front end and a super reliable backend to handle messages.
+This is my personal portfolio, where I showcase the projects I’ve built, the skills I’m passionate about, and how to get in touch. It’s a fully responsive web app built with React, Node.js, and AWS, featuring a playful, interactive front end and a dependable backend that effortlessly handles messages and other server-side tasks.
 
 ## 🌱 The Features
 
