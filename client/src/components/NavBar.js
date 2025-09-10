@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect } from "react";
 import { Navbar, Container, Nav } from "react-bootstrap";
 import logo from "../assets/img/logo4.png";
 import navIcon1 from "../assets/img/nav-icon1.svg";
@@ -7,107 +7,96 @@ import navIcon2 from "../assets/img/nav-icon2.png";
 const SECTION_IDS = ["home", "skills", "projects"];
 
 export const NavBar = () => {
-  const [activeLink, setActiveLink] = useState("home");
-  const [scrolled, setScrolled] = useState(false);
-  const lastActiveRef = useRef(activeLink);
+    const [activeLink, setActiveLink] = useState("home");
+    const [scrolled, setScrolled] = useState(false);
 
-  // navbar background on scroll
-  useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 50);
-    window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
-  }, []);
+    // Change navbar style on scroll
+    useEffect(() => {
+        const onScroll = () => setScrolled(window.scrollY > 50);
+        window.addEventListener("scroll", onScroll);
+        return () => window.removeEventListener("scroll", onScroll);
+    }, []);
 
-  // scroll spy for active link
-  useEffect(() => {
-    const getActiveFromScroll = () => {
-      const viewportH = window.innerHeight;
-      const topGuard = viewportH * 0.2;   // top 20% of viewport
-      const bottomGuard = viewportH * 0.6; // bottom 60% cutoff
+    // Highlight section in view using IntersectionObserver
+    useEffect(() => {
+        const observer = new IntersectionObserver(
+            (entries) => {
+                entries.forEach((entry) => {
+                    if (entry.isIntersecting) {
+                        setActiveLink(entry.target.id);
+                    }
+                });
+            },
+            { threshold: 0.6 }
+        );
 
-      let newActive = "";
+        SECTION_IDS.forEach((id) => {
+            const el = document.getElementById(id);
+            if (el) observer.observe(el);
+        });
 
-      for (const id of SECTION_IDS) {
+        return () => observer.disconnect();
+    }, []);
+
+    // Smooth scroll behavior
+    const handleNavClick = (id) => {
         const el = document.getElementById(id);
-        if (!el) continue;
-        const rect = el.getBoundingClientRect();
-        const inView =
-          rect.top <= bottomGuard && rect.bottom >= topGuard; // overlaps middle band
-        if (inView) {
-          newActive = id;
-          break; // first match wins -> exactly one active
+        if (el) {
+            el.scrollIntoView({ behavior: "smooth" });
+            setActiveLink(id);
         }
-      }
-
-      if (newActive !== lastActiveRef.current) {
-        lastActiveRef.current = newActive;
-        setActiveLink(newActive); // can be "" to unset
-      }
     };
 
-    // run on mount and on scroll/resize
-    getActiveFromScroll();
-    window.addEventListener("scroll", getActiveFromScroll, { passive: true });
-    window.addEventListener("resize", getActiveFromScroll);
-    return () => {
-      window.removeEventListener("scroll", getActiveFromScroll);
-      window.removeEventListener("resize", getActiveFromScroll);
-    };
-  }, []);
-
-  const onUpdateActiveLink = (value) => {
-    setActiveLink(value);
-  };
-
-  return (
-    <Navbar expand="lg" className={scrolled ? "scrolled" : ""}>
-      <Container>
-        <Navbar.Brand href="#home">
-          <img src={logo} alt="Logo" />
-        </Navbar.Brand>
-        <Navbar.Toggle aria-controls="basic-navbar-nav">
-          <span className="navbar-toggler-icon" />
-        </Navbar.Toggle>
-        <Navbar.Collapse id="basic-navbar-nav">
-          <Nav className="ms-auto">
-            <Nav.Link
-              href="#home"
-              className={activeLink === "home" ? "active navbar-link" : "navbar-link"}
-              onClick={() => onUpdateActiveLink("home")}
-            >
-              Home
-            </Nav.Link>
-            <Nav.Link
-              href="#skills"
-              className={activeLink === "skills" ? "active navbar-link" : "navbar-link"}
-              onClick={() => onUpdateActiveLink("skills")}
-            >
-              Skills
-            </Nav.Link>
-            <Nav.Link
-              href="#projects"
-              className={activeLink === "projects" ? "active navbar-link" : "navbar-link"}
-              onClick={() => onUpdateActiveLink("projects")}
-            >
-              Projects
-            </Nav.Link>
-          </Nav>
-          <span>
-            <div className="social-icon">
-              <a
-                href="https://www.linkedin.com/in/erika-cole-398a37189/"
-                target="_blank"
-                rel="noreferrer"
-              >
-                <img src={navIcon1} alt="" />
-              </a>
-              <a href="https://github.com/ecole1rllco" target="_blank" rel="noreferrer">
-                <img src={navIcon2} alt="" />
-              </a>
-            </div>
-          </span>
-        </Navbar.Collapse>
-      </Container>
-    </Navbar>
-  );
+    return (
+        <Navbar expand="lg" className={scrolled ? "scrolled" : ""}>
+            <Container>
+                <Navbar.Brand
+                    onClick={() => handleNavClick("home")}
+                    style={{ cursor: "pointer" }}
+                >
+                    <img
+                        src={logo}
+                        alt="Logo"
+                        style={{ width: "120px", height: "auto" }} // adjust size here
+                    />
+                </Navbar.Brand>
+                <Navbar.Toggle aria-controls="basic-navbar-nav">
+                    <span className="navbar-toggler-icon" />
+                </Navbar.Toggle>
+                <Navbar.Collapse id="basic-navbar-nav">
+                    <Nav className="ms-auto">
+                        {SECTION_IDS.map((id) => (
+                            <Nav.Link
+                                key={id}
+                                onClick={() => handleNavClick(id)}
+                                className={
+                                    activeLink === id ? "active navbar-link" : "navbar-link"
+                                }
+                            >
+                                {id.charAt(0).toUpperCase() + id.slice(1)}
+                            </Nav.Link>
+                        ))}
+                    </Nav>
+                    <span>
+                        <div className="social-icon">
+                            <a
+                                href="https://www.linkedin.com/in/erika-cole-398a37189/"
+                                target="_blank"
+                                rel="noreferrer"
+                            >
+                                <img src={navIcon1} alt="LinkedIn" />
+                            </a>
+                            <a
+                                href="https://github.com/ecole1rllco"
+                                target="_blank"
+                                rel="noreferrer"
+                            >
+                                <img src={navIcon2} alt="GitHub" />
+                            </a>
+                        </div>
+                    </span>
+                </Navbar.Collapse>
+            </Container>
+        </Navbar>
+    );
 };
