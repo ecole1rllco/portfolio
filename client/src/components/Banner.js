@@ -6,7 +6,7 @@ import headerImg from '../assets/img/eka2.png';
 export const Banner = () => {
     const [loopNum, setLoopNum] = useState(0);
     const [isDeleting, setIsDeleting] = useState(false);
-    const toRotate2 = ["Hello,", "Bonjour,", "こんにちは,", "Hallo,", "안녕하세요,"];
+    const toRotate2 = ["Hello,", "Bonjour,", "こんにちは,", "Kamusta,", "안녕하세요,"];
     const [text, setText] = useState('');
     const [delta, setDelta] = useState(300 - Math.random() * 100);
     const period = 1000;
@@ -26,9 +26,8 @@ export const Banner = () => {
 
         setText(updatedText);
 
-        if (setIsDeleting) {
+        if (setIsDeleting) 
             setDelta(prevDelta => prevDelta / 2);
-        }
 
         if (!isDeleting && updatedText === fullText) {
             setIsDeleting(true);
