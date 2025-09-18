@@ -85,8 +85,8 @@ This is my personal portfolio, where I showcase the projects I’ve built, the s
 
 ## 💌 Connect With Me
 
-* **LinkedIn:** <a href="https://www.linkedin.com/in/erika-cole-398a37189" target="_blank">LinkedIn</a>
-* **Website:** <a href="https://www.linkedin.com/in/erika-cole-398a37189" target="_blank">Portfolio</a>
+* **LinkedIn:** [LinkedIn](https://www.linkedin.com/in/erika-cole-398a37189)
+* **Website:** [Portfolio](http://ecole-portfolio-2025.s3-website.us-east-2.amazonaws.com)
 
 ## 🖋️ License
 
