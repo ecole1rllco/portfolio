@@ -4,26 +4,26 @@ This is my personal portfolio, where I showcase the projects I’ve built, the s
 
 ## 🌱 The Features
 
-* **Interactive Landing Page:** Say hello with a fun typing text effect that greets every visitor.
-* **Skills Carousel:** Swipe through my technical skills on a smooth, animated carousel.
-* **Project Showcase:** Explore some of my favorite projects, complete with descriptions and links.
-* **Functional Contact Form:** Want to chat? The contact form is ready to go, sending messages directly to me.
-* **Responsive Design:** Looks great and works perfectly on your phone, tablet, or desktop!
+* **Interactive Landing Page:** A friendly typing animation welcomes every visitor.  
+* **Skills Carousel:** Browse my technical skills with a smooth, animated carousel.  
+* **Project Showcase:** Check out some of my favorite projects with descriptions and links.  
+* **Functional Contact Form:** Send me a message directly through a ready-to-use contact form.  
+* **Responsive Design:** Works seamlessly on phones, tablets, and desktops. 
 
 ## 🛠️ The Tools I Used
 
 ### Frontend
 
-* **React:** For a beautifully organized, component-based user interface.
-* **React-Bootstrap:** To keep the layout clean and responsive without a fuss.
-* **React-Multi-Carousel:** The secret behind that cool skills carousel!
+* **React:** Organizes the UI into clean, reusable components.  
+* **React-Bootstrap:** Makes layouts responsive and easy to manage.  
+* **React-Multi-Carousel:** Powers the smooth skills carousel. 
 
 ### Backend
 
-* **Node.js & Express:** The power duo that handles everything on the server side, especially that contact form.
-* **Nodemailer:** My go-to for sending emails.
-* **Google APIs:** The security guard, using OAuth2 to make sure emails are sent safely through Gmail.
-* **Serverless-http:** What makes the backend a serverless superstar, ready for easy deployment!
+* **Node.js & Express:** Handles server-side functionality, including the contact form.  
+* **Nodemailer:** Sends emails reliably.  
+* **Google APIs (OAuth2):** Ensures emails are sent securely through Gmail.  
+* **Serverless-http:** Makes the backend serverless and easy to deploy.
 
 ## 🚀 Getting Started
 
