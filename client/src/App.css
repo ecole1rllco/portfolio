@@ -551,6 +551,10 @@ nav.navbar .navbar-toggler[aria-expanded="true"] .navbar-toggler-icon {
     color: #000000
 }
 
+.input-error {
+  border: 1px solid darkred;
+}
+
 @keyframes float-dramatic {
     0% {
         transform: translateY(0px);
