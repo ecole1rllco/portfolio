@@ -13,6 +13,7 @@ export const Contact = () => {
 
     const [formDetails, setFormDetails] = useState(formInitialDetails);
     const [buttonText, setButtonText] = useState('Send');
+    const [buttonAnimation, setButtonAnimation] = useState(false);
     const [status, setStatus] = useState({});
     const [errors, setErrors] = useState({});
 
@@ -26,6 +27,7 @@ export const Contact = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         setButtonText("Sending...");
+        setButtonAnimation(true);
 
         try {
 
@@ -49,6 +51,7 @@ export const Contact = () => {
                 });
 
                 setButtonText("Send");
+                setButtonAnimation(false);
 
                 // Log the full response to see what's coming back
                 const result = await response.json();
@@ -67,6 +70,7 @@ export const Contact = () => {
         } catch (error) {
             console.error("Fetch error:", error);
             setButtonText("Send");
+            setButtonAnimation(false);
             setStatus({ success: false, message: 'Something went wrong, please try again later.' });
         }
     }
@@ -96,7 +100,7 @@ export const Contact = () => {
                                 </Col>
                                 <Col sm={12} className="px-1">
                                     <textarea rows="6" value={formDetails.message} placeholder="Message" onChange={(e) => onFormUpdate('message', e.target.value)} className={errors.message ? 'input-error' : ''}></textarea>
-                                    <button type="submit"><span>{buttonText}</span></button>
+                                    <button type="submit" className={buttonAnimation ? "submitting" : ""}><span>{buttonText}</span></button>
                                 </Col>
                                 {  
                                     status.message &&
