@@ -51,7 +51,7 @@ async function sendMail(mailOptions) {
 
 // your contact route
 router.post("/contact", async (req, res) => {
-    const name = req.body.firstName + " " + req.body.lastName;
+    const name = req.body.fullName;
     const email = req.body.email;
     const message = req.body.message;
     const phone = req.body.phone;
