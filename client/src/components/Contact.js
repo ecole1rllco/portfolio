@@ -42,14 +42,14 @@ export const Contact = () => {
         try {
 
             const newErrors = {};
-            if (!formDetails.fullName) newErrors.firstName = true;
-            if (!formDetails.lastName) newErrors.lastName = true;
+            if (!formDetails.fullName) newErrors.fullName = true;
+            if (!formDetails.phone) newErrors.phone = true;
             if (!formDetails.email) newErrors.email = true;
             if (!formDetails.message) newErrors.message = true;
                 
             setErrors(newErrors);
 
-            if (Object.keys(newErrors).length > 0) {
+            if (Object.keys(newErrors).length === 0) {
 
                 let response = await fetch("https://gd3g088tw9.execute-api.us-east-2.amazonaws.com/prod/contact", {
                     //let response = await fetch("http://localhost:5000/contact", {
