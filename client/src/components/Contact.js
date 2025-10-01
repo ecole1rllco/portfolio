@@ -23,19 +23,13 @@ export const Contact = () => {
         })
     }
 
-    const showMessage = (msg, success = true, duration = success ? 5000 : null) => {
+    const showMessage = (msg, success = true) => {
         setStatus({ message: msg, success });
-
-        // Hide message after `duration` milliseconds
-        if (duration) {
-            setTimeout(() => {
-                setStatus({ message: "", success: null });
-            }, duration);
-        }
     };
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+        setStatus({});
         setButtonText("Sending...");
         setButtonAnimation(true);
 
@@ -70,18 +64,23 @@ export const Contact = () => {
                 setFormDetails(formInitialDetails);
 
                 if (response.ok && result.code === 200) {
-                    showMessage('Thanks for reaching out! I\'ll get back to you as soon as possible.', true, 10000);
+                    showMessage('Thanks for reaching out! I\'ll get back to you as soon as possible.', true);
                 } else {
                     // Log the error for more detail
                     console.error("API call was not successful. Response code:", response.status, "Message:", result.status || 'Unknown error');
-                    showMessage('Something went wrong, please try again later.', false, 10000);
+                    showMessage('Something went wrong, please try again later.', false);
                 }
+            }
+            else {
+                setButtonText("Send");
+                setButtonAnimation(false);
+                showMessage('Please fill in all the fields.', false);
             }
         } catch (error) {
             console.error("Fetch error:", error);
             setButtonText("Send");
             setButtonAnimation(false);
-            showMessage('Something went wrong, please try again later.', false, 10000);
+            showMessage('Something went wrong, please try again later.', false);
         }
     }
 
@@ -97,16 +96,16 @@ export const Contact = () => {
                         <form onSubmit={handleSubmit}>
                             <Row>
                                 <Col sm={12} className="px-1">
-                                    <input type="text" value={formDetails.fullname} placeholder="Full Name" maxLength="150" onChange={(e) => onFormUpdate('fullName', e.target.value)} className={errors.fullname ? 'input-error' : ''} />                                   
+                                    <input type="text" value={formDetails.fullname} placeholder="Full Name" maxLength="150" onClick={(e) => setStatus({})} onChange={(e) => onFormUpdate('fullname', e.target.value)} className={errors.fullname ? 'input-error' : ''} />                                   
                                 </Col>
                                 <Col sm={12} className="px-1">
-                                    <input type="email" value={formDetails.email} placeholder="Email" maxLength="150" onChange={(e) => onFormUpdate('email', e.target.value)} className={errors.email ? 'input-error' : ''} />                                   
+                                    <input type="email" value={formDetails.email} placeholder="Email" maxLength="150" onClick={(e) => setStatus({})} onChange={(e) => onFormUpdate('email', e.target.value)} className={errors.email ? 'input-error' : ''} />                                   
                                 </Col>
                                 <Col sm={12} className="px-1">
-                                    <input type="tel" value={formDetails.phone} placeholder="Phone Number" maxLength="15" onChange={(e) => onFormUpdate('phone', e.target.value)} className={errors.phone ? 'input-error' : ''} />         
+                                    <input type="tel" value={formDetails.phone} placeholder="Phone Number" maxLength="15" onClick={(e) => setStatus({})} onChange={(e) => onFormUpdate('phone', e.target.value)} className={errors.phone ? 'input-error' : ''} />         
                                 </Col>
                                 <Col sm={12} className="px-1">
-                                    <textarea rows="6" value={formDetails.message} placeholder="Message" maxLength="1000" onChange={(e) => onFormUpdate('message', e.target.value)} className={errors.message ? 'input-error' : ''}></textarea>                                  
+                                    <textarea rows="6" value={formDetails.message} placeholder="Message" maxLength="1000" onClick={(e) => setStatus({})} onChange={(e) => onFormUpdate('message', e.target.value)} className={errors.message ? 'input-error' : ''}></textarea>                                  
                                 </Col>
                                 <Col sm={12} className="px-1 d-flex align-items-center">
                                     <button type="submit" className={buttonAnimation ? "submitting" : ""}>
