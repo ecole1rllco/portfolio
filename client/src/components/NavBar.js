@@ -11,6 +11,7 @@ export const NavBar = () => {
     const [scrolled, setScrolled] = useState(false);
 
     // Change navbar style on scroll
+
     useEffect(() => {
         const onScroll = () => setScrolled(window.scrollY > 50);
         window.addEventListener("scroll", onScroll);
