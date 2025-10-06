@@ -50,7 +50,7 @@ export const Contact = () => {
             if (Object.keys(newErrors).length === 0) {
 
                 let response = await fetch("https://gd3g088tw9.execute-api.us-east-2.amazonaws.com/prod/contact", {
-                    //let response = await fetch("http://localhost:5000/contact", {
+                //let response = await fetch("http://localhost:5000/contact", {
                     method: "POST",
                     headers: {
                         "Content-Type": "application/json;charset=utf-8",
@@ -112,7 +112,7 @@ export const Contact = () => {
                                     <textarea rows="6" value={formDetails.message} placeholder="Message" maxLength="1000" onChange={(e) => onFormUpdate('message', e.target.value)} className={errors.message ? 'input-error' : ''}></textarea>                                  
                                 </Col>
                                 <Col sm={12} className="px-1 d-flex align-items-center">
-                                    <button type="submit" className={buttonAnimation ? "submitting" : ""}>
+                                    <button type="submit" className={buttonAnimation ? "submitting me-2" : "me-2"}>
                                         <span>{buttonText}</span>
                                     </button>
                                     {status.message && (
