@@ -444,6 +444,28 @@ nav.navbar .navbar-toggler[aria-expanded="true"] .navbar-toggler-icon {
         margin: 0 auto 40px auto;
     }
 
+    shimmer-text{
+        opacity: 1;
+    }
+
+    /* The hover effect */
+    .shimmer-text:hover {
+        mask: linear-gradient(-60deg, #000 30%, rgba(0, 0, 0, .333), #000 70%) right / 300% 100%;
+        /* Start the animation on hover */
+        animation: textShimmer 2.5s infinite;
+        animation-iteration-count: 1;
+        
+        /* Adjust animation duration and iteration count as needed */
+    }
+
+/* The animation keyframes */
+@keyframes textShimmer {
+
+    100% {
+        mask-position: left;
+    }
+}
+
 .background-image-left {
     top: -400px;
     position: absolute;
