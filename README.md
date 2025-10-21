@@ -34,7 +34,3 @@ to explore my projects and skills.
 
 * **LinkedIn:** [Erika Cole](https://www.linkedin.com/in/erika-cole-398a37189)
 * **Website:** [Portfolio](http://ecole-portfolio-2025.s3-website.us-east-2.amazonaws.com)
-
-## 🖋️ License
-
-This project is licensed under the MIT License—see the `LICENSE.md` file for details.
