@@ -21,6 +21,7 @@ export const Contact = () => {
         setStatus({});
 
         // Clear the error for the specific field being updated
+        setErrors({ ...errors, [category]: false });
         setFormDetails({
             ...formDetails,
             [category]: value
