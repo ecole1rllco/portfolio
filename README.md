@@ -27,10 +27,10 @@ This is my personal portfolio, where I showcase the projects I’ve built, the s
 
 ## 🚀 Getting Started
 
-This portfolio is fully responsive and works on any device. View it live at http://ecole-portfolio-2025.s3-website.us-east-2.amazonaws.com
+This portfolio is fully responsive and works on any device. View it live at [https://ekadev.us/](https://ekadev.us/)
 to explore my projects and skills.
 
 ## 💌 Connect With Me
 
 * **LinkedIn:** [Erika Cole](https://www.linkedin.com/in/erika-cole-398a37189)
-* **Website:** [Portfolio](http://ecole-portfolio-2025.s3-website.us-east-2.amazonaws.com)
+* **Website:** [Portfolio](https://ekadev.us/)
