@@ -6,38 +6,39 @@ import headerImg from '../assets/img/eka2.png';
 export const Banner = () => {
     const [loopNum, setLoopNum] = useState(0);
     const [isDeleting, setIsDeleting] = useState(false);
-    const toRotate2 = ["Hello,", "Bonjour,", "こんにちは,", "Kamusta,", "안녕하세요,"];
     const [text, setText] = useState('');
-    const [delta, setDelta] = useState(300 - Math.random() * 100);
-    const period = 1000;
+
+    const toRotate2 = ["Hello,", "Bonjour,", "こんにちは,", "Kamusta,", "안녕하세요,"];
+
+    // Timing config
+    const typingSpeed = 180;   // ms per char
+    const deletingSpeed = 60;  // ms per char
+    const fullTextPause = 600; // pause after full word
+    const emptyPause = 200;    // pause after deletion
 
     useEffect(() => {
-        let ticker = setInterval(() => {
-            tick();
-        }, delta)
-
-        return () => { clearInterval(ticker) };
-    }, [text])
+        const ticker = setTimeout(() => tick(), isDeleting ? deletingSpeed : typingSpeed);
+        return () => clearTimeout(ticker);
+    }, [text, isDeleting]);
 
     const tick = () => {
-        let i = loopNum % toRotate2.length;
-        let fullText = toRotate2[i];
-        let updatedText = isDeleting ? fullText.substring(0, text.length - 1) : fullText.substring(0, text.length + 1);
+        const i = loopNum % toRotate2.length;
+        const fullText = toRotate2[i];
+        const updatedText = isDeleting
+            ? fullText.substring(0, text.length - 1)
+            : fullText.substring(0, text.length + 1);
 
         setText(updatedText);
 
-        if (setIsDeleting) 
-            setDelta(prevDelta => prevDelta / 2);
-
         if (!isDeleting && updatedText === fullText) {
-            setIsDeleting(true);
-            setDelta(period);
+            // pause at full word before deleting
+            setTimeout(() => setIsDeleting(true), fullTextPause);
         } else if (isDeleting && updatedText === '') {
+            // move to next word
             setIsDeleting(false);
             setLoopNum(loopNum + 1);
-            setDelta(500);
         }
-    }
+    };
 
     return (
         <section className="banner" id="home">
@@ -58,5 +59,5 @@ export const Banner = () => {
                 </Row>
             </Container>
         </section>
-    )
-}
+    );
+};
