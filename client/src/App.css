@@ -114,10 +114,12 @@ input:focus, textarea:focus, select:focus {
 }
 
 p.success {
+    text-align: center;
     color: #000000;
 }
 
 p.danger {
+    text-align: center;
     color: darkred;
 }
 
@@ -665,8 +667,15 @@ nav.navbar .navbar-toggler[aria-expanded="true"] .navbar-toggler-icon {
 }
 
 .input-error {
-    border: 1px solid darkred;
+    border: 1px solid red;
 }
+
+input.input-error:focus,
+textarea.input-error:focus {
+    border: 1px solid red;
+    box-shadow: none;
+}
+
 
 @keyframes float-dramatic {
     0% {

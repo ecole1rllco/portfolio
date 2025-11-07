@@ -10,14 +10,14 @@ import "dotenv/config"; // Use 'dotenv/config' for ES Modules to load environmen
 const router = express.Router();
 
 const app = express();
-app.use(cors({ origin: "http://ecole-portfolio-2025.s3-website.us-east-2.amazonaws.com" }));
+app.use(cors({ origin: "https://ekadev.us" }));
 app.use(express.json());
 app.use("/", router);
 
 // OAuth2 setup
 const CLIENT_ID = process.env.CLIENT_ID;
 const CLIENT_SECRET = process.env.CLIENT_SECRET;
-const REDIRECT_URI = "http://ecole-portfolio-2025.s3-website.us-east-2.amazonaws.com";
+const REDIRECT_URI = "https://developers.google.com/oauthplayground";
 const REFRESH_TOKEN = process.env.REFRESH_TOKEN;
 
 const oAuth2Client = new google.auth.OAuth2(

@@ -68,7 +68,7 @@ export const Contact = () => {
                 setFormDetails(formInitialDetails);
 
                 if (response.ok && result.code === 200) {
-                    showMessage('Thanks for reaching out! I\'ll get back to you as soon as possible.', true);
+                    showMessage('Thanks for reaching out! I\'ll get back to you soon.', true);
                 } else {
                     // Log the error for more detail
                     console.error("API call was not successful. Response code:", response.status, "Message:", result.status || 'Unknown error');
@@ -78,7 +78,7 @@ export const Contact = () => {
             else {
                 setButtonText("Send");
                 setButtonAnimation(false);
-                showMessage('Please fill in all the fields.', false);
+                showMessage('Kindly ensure all fields are filled out.', false);
             }
         } catch (error) {
             console.error("Fetch error:", error);
