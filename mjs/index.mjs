@@ -17,7 +17,7 @@ app.use("/", router);
 // OAuth2 setup
 const CLIENT_ID = process.env.CLIENT_ID;
 const CLIENT_SECRET = process.env.CLIENT_SECRET;
-const REDIRECT_URI = "https://developers.google.com/oauthplayground";
+const REDIRECT_URI = process.env.REDIRECT_URI;
 const REFRESH_TOKEN = process.env.REFRESH_TOKEN;
 
 const oAuth2Client = new google.auth.OAuth2(
@@ -75,6 +75,30 @@ router.post("/contact", async (req, res) => {
     } catch (error) {
         console.error("Handler caught error:", error);
         res.json({ code: 500, status: "Error", error: error.message });
+    }
+});
+
+router.get("/oauth2callback", async (req, res) => {
+    const code = req.query.code; // Google sends ?code=XXXX
+
+    if (!code) {
+        return res.status(400).json({ error: "Missing authorization code" });
+    }
+
+    try {
+        // Exchange code for tokens
+        const { tokens } = await oAuth2Client.getToken(code);
+        oAuth2Client.setCredentials(tokens);
+
+        // Optionally: store refresh token securely (Secrets Manager, DynamoDB)
+        console.log("Tokens received:", tokens);
+
+        // Redirect back to React app homepage (or wherever you want)
+        res.redirect("https://ekadev.us?auth=success");
+    } catch (error) {
+        console.error("OAuth callback error:", error);
+        // Redirect back to React app with error query param
+        res.redirect(`https://ekadev.us?auth=error&message=${encodeURIComponent(error.message)}`);
     }
 });
 
