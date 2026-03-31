@@ -4,7 +4,7 @@ import contactImg from '../assets/img/contactImg.png';
 
 export const Contact = () => {
     const formInitialDetails = {
-        fullName: '',
+        fullname: '',
         email: '',
         phone: '',
         message: ''
@@ -17,32 +17,31 @@ export const Contact = () => {
     const [errors, setErrors] = useState({});
 
     const onFormUpdate = (category, value) => {
+        //Clear the status message when the user starts typing
+        setStatus({});
+
+        // Clear the error for the specific field being updated
+        setErrors({ ...errors, [category]: false });
         setFormDetails({
             ...formDetails,
             [category]: value
         })
     }
 
-    const showMessage = (msg, success = true, duration = success ? 5000 : null) => {
+    const showMessage = (msg, success = true) => {
         setStatus({ message: msg, success });
-
-        // Hide message after `duration` milliseconds
-        if (duration) {
-            setTimeout(() => {
-                setStatus({ message: "", success: null });
-            }, duration);
-        }
     };
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+        setStatus({});
         setButtonText("Sending...");
         setButtonAnimation(true);
 
         try {
 
             const newErrors = {};
-            if (!formDetails.fullName) newErrors.fullName = true;
+            if (!formDetails.fullname) newErrors.fullname = true;
             if (!formDetails.phone) newErrors.phone = true;
             if (!formDetails.email) newErrors.email = true;
             if (!formDetails.message) newErrors.message = true;
@@ -52,7 +51,7 @@ export const Contact = () => {
             if (Object.keys(newErrors).length === 0) {
 
                 let response = await fetch("https://gd3g088tw9.execute-api.us-east-2.amazonaws.com/prod/contact", {
-                    //let response = await fetch("http://localhost:5000/contact", {
+                //let response = await fetch("http://localhost:5000/contact", {
                     method: "POST",
                     headers: {
                         "Content-Type": "application/json;charset=utf-8",
@@ -70,18 +69,23 @@ export const Contact = () => {
                 setFormDetails(formInitialDetails);
 
                 if (response.ok && result.code === 200) {
-                    showMessage('Thanks for reaching out! I\'ll get back to you as soon as possible.', true, 10000);
+                    showMessage('Thanks for reaching out! I\'ll get back to you soon.', true);
                 } else {
                     // Log the error for more detail
                     console.error("API call was not successful. Response code:", response.status, "Message:", result.status || 'Unknown error');
-                    showMessage('Something went wrong, please try again later.', false, 10000);
+                    showMessage('Something went wrong, please try again later.', false);
                 }
+            }
+            else {
+                setButtonText("Send");
+                setButtonAnimation(false);
+                showMessage('Kindly ensure all fields are filled out.', false);
             }
         } catch (error) {
             console.error("Fetch error:", error);
             setButtonText("Send");
             setButtonAnimation(false);
-            showMessage('Something went wrong, please try again later.', false, 10000);
+            showMessage('Something went wrong, please try again later.', false);
         }
     }
 
@@ -97,7 +101,7 @@ export const Contact = () => {
                         <form onSubmit={handleSubmit}>
                             <Row>
                                 <Col sm={12} className="px-1">
-                                    <input type="text" value={formDetails.fullName} placeholder="Full Name" maxLength="150" onChange={(e) => onFormUpdate('fullName', e.target.value)} className={errors.fullName ? 'input-error' : ''} />                                   
+                                    <input type="text" value={formDetails.fullname} placeholder="Full Name" maxLength="150" onChange={(e) => onFormUpdate('fullname', e.target.value)} className={errors.fullname ? 'input-error' : ''} />                                   
                                 </Col>
                                 <Col sm={12} className="px-1">
                                     <input type="email" value={formDetails.email} placeholder="Email" maxLength="150" onChange={(e) => onFormUpdate('email', e.target.value)} className={errors.email ? 'input-error' : ''} />                                   
@@ -109,7 +113,7 @@ export const Contact = () => {
                                     <textarea rows="6" value={formDetails.message} placeholder="Message" maxLength="1000" onChange={(e) => onFormUpdate('message', e.target.value)} className={errors.message ? 'input-error' : ''}></textarea>                                  
                                 </Col>
                                 <Col sm={12} className="px-1 d-flex align-items-center">
-                                    <button type="submit" className={buttonAnimation ? "submitting" : ""}>
+                                    <button type="submit" className={buttonAnimation ? "submitting me-2" : "me-2"}>
                                         <span>{buttonText}</span>
                                     </button>
                                     {status.message && (
