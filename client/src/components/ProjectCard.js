@@ -1,7 +1,7 @@
 
-export const ProjectCard = ({ title, description, imageUrl }) => {
+export const ProjectCard = ({ title, description, imageUrl, webSiteUrl }) => {
     return (
-        <a href="https://github.com/ecole1rllco/portfolio" target="_blank" rel="noreferrer">
+        <a href={webSiteUrl} target="_blank" rel="noreferrer">
             <div className="proj-imgbx">
                 <img src={imageUrl} alt={title} />
                     <div className="proj-txtx">

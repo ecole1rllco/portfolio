@@ -4,6 +4,7 @@ import Nav from 'react-bootstrap/Nav';
 import { ProjectCard } from "./ProjectCard";
 import colorSharp2 from '../assets/img/color-sharp4.png';
 import projImg1 from '../assets/img/project-img.png';
+import projImg2 from '../assets/img/project-img2.png';
 
 export const Projects = () => {
 
@@ -11,7 +12,14 @@ export const Projects = () => {
         {
             title: "Personal Portfolio",
             description: "A personal portfolio showcasing my expertise in React for dynamic front-end experiences and Node.js for robust back-end functionality.",
-            imageUrl: projImg1
+            imageUrl: projImg1,
+            webSiteUrl: "https://github.com/ecole1rllco/portfolio"
+        },
+        {
+            title: "Corporate Website",
+            description: "A corporate website showcasing my expertise in Angular and Tailwind for dynamic front-end experiences.",
+            imageUrl: projImg2,
+            webSiteUrl: "https://www.rllco.com/"
         }
     ];
 
